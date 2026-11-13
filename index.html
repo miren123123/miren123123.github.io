@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FIRELINE · 烽火地带</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <canvas id="view"></canvas>
+    <div id="ui">
+      <section id="screen-menu" class="screen">
+        <div class="menu-card">
+          <p class="eyebrow">致敬《三角洲行动》 · 撤离原型</p>
+          <h1>FIRELINE</h1>
+          <p class="sub">烽火地带 · 灰港码头</p>
+          <p class="lead">
+            干员，灰港藏着一批未登记物资。搜完集装箱，从撤离点活着出来。倒地的话，背包留在原地。带出来的货，按哈夫币结算。
+          </p>
+          <div class="stats">
+            <div><span>仓库</span><strong id="stash-money">0</strong></div>
+            <div><span>行动</span><strong id="stash-raids">0</strong></div>
+            <div><span>撤离</span><strong id="stash-extracts">0</strong></div>
+          </div>
+          <button id="btn-deploy" type="button">部署</button>
+          <ul class="keys">
+            <li>WASD 移动</li>
+            <li>Shift 冲刺</li>
+            <li>C 蹲伏</li>
+            <li>鼠标 瞄准 / 开火</li>
+            <li>R 换弹</li>
+            <li>按住 F 搜刮 / 撤离</li>
+            <li>G 使用急救包</li>
+            <li>1 / 2 / 3 切枪</li>
+            <li>Tab 背包</li>
+            <li>Esc 暂停</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="screen-brief" class="screen" hidden>
+        <div class="menu-card">
+          <p class="eyebrow">行动简报</p>
+          <h2>灰港码头</h2>
+          <ul id="brief-lines" class="brief"></ul>
+          <button id="btn-insert" type="button">进入战场</button>
+        </div>
+      </section>
+
+      <section id="screen-raid" hidden>
+        <div id="vignette"></div>
+        <div id="hurt"></div>
+        <div id="hitdir"></div>
+        <div id="compass"><span id="compass-deg">000</span><span id="compass-dir">N</span></div>
+        <div id="objective">
+          <strong>灰港码头</strong>
+          <em>搜索物资，活着撤离</em>
+          <span id="objective-value">背包 0</span>
+        </div>
+        <canvas id="minimap" width="180" height="180"></canvas>
+        <div id="crosshair"></div>
+        <div id="hitmarker"></div>
+        <div id="prompt"></div>
+        <div id="channel" hidden>
+          <div id="channel-fill"></div>
+          <span id="channel-label"></span>
+        </div>
+        <div id="radio"></div>
+        <ul id="feed"></ul>
+        <aside id="inventory" hidden>
+          <header>背包</header>
+          <ul id="inventory-list"></ul>
+        </aside>
+        <div id="vitals">
+          <div class="vital-nums"><b id="hp-num">100</b><span>HP</span></div>
+          <div id="plates" aria-label="护甲"><i></i><i></i><i></i></div>
+          <div class="bar armor"><i id="armor-bar"></i></div>
+          <div class="bar health"><i id="hp-bar"></i></div>
+          <small id="stance">站立</small>
+        </div>
+        <div id="weapon">
+          <small id="weapon-name">突击步枪</small>
+          <div class="ammo"><b id="ammo-mag">30</b><span id="ammo-res">/ 120</span></div>
+          <small id="firemode">全自动</small>
+        </div>
+        <p id="hint-keys">按住 F 搜刮或撤离 · G 急救包 · 1/2/3 切枪 · Tab 背包</p>
+      </section>
+
+      <section id="screen-pause" class="screen" hidden>
+        <div class="menu-card slim">
+          <p class="eyebrow">行动暂停</p>
+          <h2>灰港码头</h2>
+          <button id="btn-resume" type="button">继续行动</button>
+          <button id="btn-abort" class="ghost" type="button">放弃行动</button>
+        </div>
+      </section>
+
+      <section id="screen-result" class="screen" hidden>
+        <div class="menu-card">
+          <p class="eyebrow" id="result-kicker">结算</p>
+          <h2 id="result-title">撤离成功</h2>
+          <p id="result-copy"></p>
+          <ul id="result-list"></ul>
+          <div class="stats">
+            <div><span>本局</span><strong id="result-value">0</strong></div>
+            <div><span>仓库</span><strong id="result-stash">0</strong></div>
+          </div>
+          <button id="btn-again" type="button">再来一局</button>
+          <button id="btn-base" class="ghost" type="button">返回基地</button>
+        </div>
+      </section>
+    </div>
+    <script type="module" src="/src/main.js?v=49"></script>
+  </body>
+</html>
